@@ -1,47 +1,33 @@
 #include "Sphere.h"
 
-sphere::sphere(int x, int y, int z, int _radius)
+sphere::sphere(int x, int y, int z, float _radius)
 {
 	center.x = x;
 	center.y = y;
 	center.z = z;
 	radius = _radius;
 
-	lightOrigin.x = 0;
-	lightOrigin.y = 0;
-	lightOrigin.z = 1;
+	lightOrigin.x = 0.0f;
+	lightOrigin.y = 0.0f;
+	lightOrigin.z = 1.0f;
 }
 
-glm::vec3 sphere::closestPoint(Ray _A, glm::vec3 _b)
+glm::vec3 sphere::GetNormal(glm::vec3 _pi)
 {
-	return _A.origin + ((_b - _A.origin)*_A.direction) * _A.direction;
+	return (_pi - center) / radius;
 }
 
-bool sphere::interception(Ray _A)
+bool sphere::interception(Ray _A,float & _t)
 {
-	float t0, t1;
 	// geometric solution
-	glm::vec3 L = center - _A.origin;
-	float tca = glm::dot(L,_A.direction);
-	float d2 = glm::dot(L,L) - tca * tca;
-	if (d2 > radius) return false;
-	float thc = sqrt(radius - d2);
-	t0 = tca - thc;
-	t1 = tca + thc;
-	
-	float sn = glm::max(glm::dot(glm::vec3(t0, t1,0), glm::vec3(-1, -1,-1)),0.0f);
-	colour.x = 225.0f * sn;
-	//colour.x = glm::distance(t0,t1);
-
-	if (t0 < 0)
-	{
-		t0 = t1; // if t0 is negative, let's use t1 instead 
-		if (t0 < 0) return false; // both t0 and t1 are negative 
-	}
+	glm::vec3 originToCenter = _A.origin - center;
+	float b = 2 * glm::dot(originToCenter, _A.direction);
+	float c = glm::dot(originToCenter, originToCenter) - radius * radius;
+	float disc = b * b - 4 * c;
+	if (disc < 1e-4) return false;
+	disc = sqrt(disc);
+	float t0 = -b - disc;
+	float t1 = -b + disc;
+	_t = (t0 < t1) ? t0 : t1;
 	return true;
-}
-
-float sphere::shadeRed(Ray _A, glm::vec3 _b)
-{
-	return 0;
 }

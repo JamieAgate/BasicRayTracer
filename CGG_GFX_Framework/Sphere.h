@@ -1,4 +1,5 @@
 #include <glm.hpp>
+#include <iostream>
 #include "Ray.h"
 
 #ifndef Sphere_H
@@ -15,15 +16,10 @@ struct intercept
 class sphere
 {
 public:
-	sphere(int x, int y, int z, int radius);
+	sphere(int x, int y, int z, float radius);
 
-	float shadeRed(Ray _A, glm::vec3 _b);
-	int shadeGreen(Ray _A, glm::vec3 _b);
-	int shadeBlue(Ray _A, glm::vec3 _b);
-
-	glm::vec3 closestPoint(Ray _A, glm::vec3 _b);
-	bool interception(Ray _A);
-	glm::vec3 normal(glm::vec3 center, glm::vec3 _a);
+	glm::vec3 GetNormal(glm::vec3 _pi);
+	bool interception(Ray _A, float & _t);
 
 	int getRad() { return radius; }
 	glm::vec3 getCent() { return center; }
@@ -32,6 +28,6 @@ private:
 	glm::vec3 lightOrigin; 
 	glm::vec3 lightDir;
 	glm::vec3 center;
-	int radius;
+	float radius;
 };
 #endif
