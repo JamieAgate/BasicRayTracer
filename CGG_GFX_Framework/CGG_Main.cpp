@@ -94,6 +94,11 @@ void CGG::DrawPixel( int pixelX, int pixelY, int red, int green, int blue )
 	SDL_RenderDrawPoint(_renderer, pixelX, pixelY);
 }
 
+void CGG::Present()
+{
+	SDL_RenderPresent(_renderer);
+}
+
 
 bool CGG::ProcessFrame()
 {

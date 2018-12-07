@@ -2,8 +2,8 @@
 #include "Camera.h"
 #include "Tracer.h"
 
-/*glm::vec3 Tracer::tracer(Ray _A)
+Ray::Ray(glm::vec2 _origin)
 {
-	glm::vec3 colour;
-	return colour;
-}*/
+	m_origin = glm::vec3(_origin.x,_origin.y,0.0f);
+	m_direction = glm::vec3(0, 0, 1.0f);
+}

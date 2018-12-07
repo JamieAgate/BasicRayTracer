@@ -16,6 +16,9 @@ namespace CGG
 	/// Draws a single pixel to screen. If coordinates are out of bounds, does nothing
 	void DrawPixel( int pixelX, int pixelY, int red, int green, int blue );
 
+
+	void Present();
+
 	/// Displays graphics to screen and keeps window open until user requests exit (pressing escape key or closing window)
 	int ShowAndHold();
 

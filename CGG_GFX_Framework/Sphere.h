@@ -1,9 +1,10 @@
-#include <glm.hpp>
-#include <iostream>
-#include "Ray.h"
-
+#pragma once
 #ifndef Sphere_H
 #define Sphere_H
+
+#include <iostream>
+
+#include "Object.h"
 
 class Ray;
 
@@ -13,21 +14,17 @@ struct intercept
 	int distance;
 };
 
-class sphere
+class Sphere : public Object
 {
 public:
-	sphere(int x, int y, int z, float radius);
+	Sphere(int x, int y, int z, float radius);
 
-	glm::vec3 GetNormal(glm::vec3 _pi);
-	bool interception(Ray _A, float & _t);
+	
+	glm::vec3 GetNormal(glm::vec3 _pi) override;
 
-	int getRad() { return radius; }
-	glm::vec3 getCent() { return center; }
-	glm::vec3 colour;
+	bool Interception(Ray _A, float& _t) override;
+
 private:
-	glm::vec3 lightOrigin; 
-	glm::vec3 lightDir;
-	glm::vec3 center;
-	float radius;
+
 };
 #endif

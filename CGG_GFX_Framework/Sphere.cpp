@@ -1,28 +1,21 @@
 #include "Sphere.h"
 
-sphere::sphere(int x, int y, int z, float _radius)
+Sphere::Sphere(int x, int y, int z, float _radius)
 {
-	center.x = x;
-	center.y = y;
-	center.z = z;
-	radius = _radius;
-
-	lightOrigin.x = 0.0f;
-	lightOrigin.y = 0.0f;
-	lightOrigin.z = 1.0f;
+	m_position = glm::vec3(x, y, z);
+	m_radius = _radius;
 }
 
-glm::vec3 sphere::GetNormal(glm::vec3 _pi)
+glm::vec3 Sphere::GetNormal(glm::vec3 _pi)
 {
-	return (_pi - center) / radius;
+	return (_pi - m_position) / m_radius;
 }
 
-bool sphere::interception(Ray _A,float & _t)
+bool Sphere::Interception(Ray _A,float & _t)
 {
-	// geometric solution
-	glm::vec3 originToCenter = _A.origin - center;
-	float b = 2 * glm::dot(originToCenter, _A.direction);
-	float c = glm::dot(originToCenter, originToCenter) - radius * radius;
+	glm::vec3 originToCenter = _A.GetOrigin() - m_position;
+	float b = 2 * glm::dot(originToCenter, _A.GetDirection());
+	float c = glm::dot(originToCenter, originToCenter) - m_radius * m_radius;
 	float disc = b * b - 4 * c;
 	if (disc < 1e-4) return false;
 	disc = sqrt(disc);
