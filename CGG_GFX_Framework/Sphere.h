@@ -11,14 +11,14 @@ class Ray;
 struct intercept
 {
 	bool hit;
-	int distance;
+	float distance;
 };
 
 class Sphere : public Object
 {
 public:
 	Sphere(int x, int y, int z, float radius);
-
+	Sphere(int x, int y, int z, float radius, glm::vec3 _colour, float _reflective);
 	
 	glm::vec3 GetNormal(glm::vec3 _pi) override;
 

@@ -4,6 +4,8 @@
 
 #include <memory>
 #include <vector>
+#include <thread>
+#include <mutex>
 
 #include "Object.h"
 #include "Tracer.h"
@@ -19,9 +21,15 @@ public:
 	void Render();
 
 private:
+	void RenderSection(int _minx, int _maxX, int _minY, int _maxY);
+	
+	std::mutex m_mutex;
+	std::vector<std::thread> m_threads;
+
+	std::vector<glm::vec4> m_imageV;
 	std::vector<std::shared_ptr<Object>> m_objects;
-	int m_windowW, m_windowH;
 	std::shared_ptr<Tracer> m_tracer;
+	int m_windowW, m_windowH;
 };
 
 #endif // !_SCECE_H_

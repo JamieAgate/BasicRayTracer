@@ -10,6 +10,7 @@ class Object
 {
 public:
 	Object();
+	Object(glm::vec3 _colour, float _type);
 	~Object();
 
 	virtual bool Interception(Ray _ray, float& _t) { return false; }
@@ -17,12 +18,14 @@ public:
 
 	glm::vec3 GetPosition() { return m_position; }
 	glm::vec3 GetColour() { return m_colour; }
+	float GetReflective() { return m_reflectivness; }
 
 protected:
 	glm::vec3 m_position;
 	glm::vec3 m_rotation;
 	float m_radius;
 
+	float m_reflectivness;
 	glm::vec3 m_colour;
 };
 

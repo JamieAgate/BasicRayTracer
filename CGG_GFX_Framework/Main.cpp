@@ -6,8 +6,9 @@
 int main(int argc, char *argv[])
 {
 	// Variables for storing window dimensions
-	int windowWidth = 900;
+	int windowWidth = 1600;
 	int windowHeight = 900;
+
 
 	// Call CGG::Init to initialise and create your window
 	// Tell it what size you want the window to be

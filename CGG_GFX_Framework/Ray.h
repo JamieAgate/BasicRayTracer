@@ -8,7 +8,8 @@ class Ray
 {
 public:
 	Ray();
-	Ray(glm::vec2 _origin);
+	Ray(glm::vec2 _origin, float _aspectRatio);
+	Ray(glm::vec3 _origin, glm::vec3 _dir);
 
 	glm::vec3 GetOrigin() { return m_origin; }
 	glm::vec3 GetDirection() { return m_direction; }
