@@ -22,6 +22,8 @@ public:
 	
 	glm::vec3 GetNormal(glm::vec3 _pi) override;
 
+	glm::mat4 m_objectToWorld;
+
 	bool Interception(Ray _A, float& _t) override;
 
 private:

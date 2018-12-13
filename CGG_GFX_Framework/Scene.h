@@ -6,6 +6,7 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <gtc/matrix_transform.hpp>
 
 #include "Object.h"
 #include "Tracer.h"
@@ -26,7 +27,10 @@ private:
 	std::mutex m_mutex;
 	std::vector<std::thread> m_threads;
 
-	std::vector<glm::vec4> m_imageV;
+	glm::mat4 m_cameraToWorld;
+	
+
+	std::vector<glm::vec3> m_imageV;
 	std::vector<std::shared_ptr<Object>> m_objects;
 	std::shared_ptr<Tracer> m_tracer;
 	int m_windowW, m_windowH;

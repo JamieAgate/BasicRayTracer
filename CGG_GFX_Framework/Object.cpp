@@ -3,7 +3,7 @@
 Object::Object()
 {
 	m_colour = glm::vec3(255.0f, 0.0f, 0.0f);
-	m_reflectivness = 0.0f;
+	m_reflectivness = 0;
 }
 
 Object::Object(glm::vec3 _colour, float _type)

@@ -9,7 +9,9 @@ Light::Light()
 
 Light::Light(glm::vec3 _pos, glm::vec3 _colour, float _intensity)
 {
-	m_position = _pos;
+	m_lightToWorld = glm::mat4(0.95292, 0.289503, 0.0901785, 0, -0.0960954, 0.5704, -0.815727, 0, -0.287593, 0.768656, 0.571365, 0, 0, 0, 0, 1);
+
+	m_position = glm::vec4(_pos,0.0f) * m_lightToWorld;
 	m_colour = _colour;
 	m_intensity = _intensity;
 }
